@@ -1,7 +1,3 @@
-
-
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -9,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -100,7 +95,8 @@ public class Contacts {
 
     private static void addContact (Path filepath, Charset charConvert, Scanner input) throws IOException {
         System.out.print("Enter name: ");
-        String name = input.next().trim();
+        input.nextLine(); // consume newline character left by previous input
+        String name = input.nextLine().trim();
 
         boolean nameExist = false;
         List<String> lines = Files.readAllLines(filepath, charConvert);
@@ -121,7 +117,7 @@ public class Contacts {
                 lines.removeIf(line -> line.toLowerCase().startsWith(name.toLowerCase() + " "));
                 System.out.print("Enter phone number: ");
                 String phoneNumber = input.next().trim().replaceAll("(\\d{3})(\\d{3})(\\d{4})", "$1-$2-$3");
-                String newContact = name + "  |  " + phoneNumber;
+                String newContact = String.format("%-20s | %s", name, phoneNumber);
                 lines.add(newContact);
                 System.out.println("Contact added: " + newContact);
             } else {
