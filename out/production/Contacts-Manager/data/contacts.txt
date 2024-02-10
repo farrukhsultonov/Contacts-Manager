@@ -1,6 +1,0 @@
-Name          | Phone number
------------------------------
-Farrukh Sultonov | 1231231234
-Jordy Muniz | 2342342345
-Johnny Martinez | 3453453456
-Jay Arredondo  |  999-999-9999
